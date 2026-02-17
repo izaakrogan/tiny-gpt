@@ -2,6 +2,7 @@
 runs the training loop, then samples some text from the trained model.
 
     python train.py --model bigram
+    python train.py --model head
 
 Every run writes losses.csv and ends by generating text. There is a lot
 going on in this file. You do not need to understand all of it to build
