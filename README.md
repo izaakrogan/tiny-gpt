@@ -32,7 +32,7 @@ python train.py --model bigram
 
 This one is finished. It is a lookup table from the current character to a distribution over next characters. No attention, and no notion of position. It is here so that the training loop is working before you start on attention: cross-entropy loss, gradients, AdamW.
 
-Loss should fall from roughly 4.6 to roughly 2.7. Read the 200 characters it generates at the end and keep them in mind, because that is what your attention model has to improve on.
+Loss should fall from roughly 4.8 to roughly 2.7. Read the 200 characters it generates at the end and keep them in mind, because that is what your attention model has to improve on.
 
 ## Step 2: single attention head
 
