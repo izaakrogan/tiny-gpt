@@ -51,7 +51,10 @@ def main():
     p.add_argument("--lr", type=float, default=1e-3)
     p.add_argument("--temperature", type=float, default=1.0)
     p.add_argument("--sample-chars", type=int, default=200)
+    p.add_argument("--seed", type=int, default=42, help="change for a different run")
     args = p.parse_args()
+
+    torch.manual_seed(args.seed)
 
     device = "cuda" if torch.cuda.is_available() else ("mps" if torch.backends.mps.is_available() else "cpu")
     print(f"device: {device}")
