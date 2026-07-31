@@ -1,10 +1,11 @@
-"""Step 2: a single attention head. Guided skeleton, you write the attention.
+"""Step 2: a single attention head. This is the outline, you are going to
+write the attention bits.
 
 What you implement here is the week 1-4 material: QKV projections,
 scaled scores, the causal mask, softmax, weighted sum.
 
 The harness is written for you: embeddings, positions, the language-model
-head, generate. Fill in the TODOs in CausalSelfAttentionHead.forward.
+head, and generate. Fill in the TODOs in CausalSelfAttentionHead.forward.
 """
 
 import torch

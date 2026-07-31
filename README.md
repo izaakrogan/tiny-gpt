@@ -1,6 +1,6 @@
 # Tiny GPT
 
-Build a transformer in stages.
+We're going to start with a single attention head and build from there.
 
 ## Setup
 
@@ -53,3 +53,10 @@ Position embeddings are already wired in. Find where they are added and work out
 One bug to expect: if you leave out the mask, the training loss falls further than it should while the generated text stays bad. Every position has seen the answer during training. If your loss looks too good, check the mask first.
 
 Every run writes `losses.csv` and generates about 200 characters at the end. `python plot.py` turns the CSV into a PNG. It needs matplotlib.
+
+## Resources
+
+- [Transformer Explainer](https://poloclub.github.io/transformer-explainer/): a real GPT-2 running in your browser, with every intermediate step on show. Type a sentence and watch the attention weights move.
+- [LLM Visualization](https://bbycroft.net/llm): a 3D walkthrough of a small GPT, layer by layer. Good for seeing how the single head you're writing fits into the whole machine.
+- [The Illustrated Transformer](https://jalammar.github.io/illustrated-transformer/): Jay Alammar's classic walkthrough of the full architecture, diagram by diagram.
+- [Attention in transformers, visually explained](https://www.youtube.com/watch?v=eMlx5fFNoYc): 3Blue1Brown on attention, the same mechanism you're implementing, animated.

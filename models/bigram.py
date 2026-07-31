@@ -1,9 +1,12 @@
 """Step 1: the bigram baseline. Complete and working.
 
-A lookup table: for each current character, a row of logits over what comes
-next. No attention, no masking, no positions. It exists so the training loop
-holds no surprises before attention arrives, and so every later model has a
-baseline to beat.
+The whole model is one table, vocab_size by vocab_size. You give it the
+character you're on, it looks up that character's row, and the row holds a
+score for every character that could come next. Training does nothing more
+than adjust the rows. It can't see anything earlier in the text than the
+character you gave it, so what it writes is bad, and that's the point: it
+gets the training loop working and it sets a baseline score that we want
+the attention model to beat.
 """
 
 import torch
