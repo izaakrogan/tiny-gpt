@@ -2,5 +2,5 @@
 __pycache__/
 .DS_Store
 input.txt
-losses.csv
+losses_*.csv
 loss.png

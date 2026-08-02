@@ -86,9 +86,10 @@ def main():
         loss.backward()
         opt.step()
 
-    with open("losses.csv", "w") as f:
+    csv_name = f"losses_{args.model}.csv"
+    with open(csv_name, "w") as f:
         f.write("\n".join(rows) + "\n")
-    print("\nwrote losses.csv")
+    print(f"\nwrote {csv_name}")
 
     print(f"\n--- {args.sample_chars} generated characters (temperature {args.temperature}) ---")
     ctx = torch.zeros((1, 1), dtype=torch.long, device=device)
