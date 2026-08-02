@@ -13,6 +13,10 @@ DATA_FILE = os.path.join(os.path.dirname(__file__), "input.txt")
 
 def load_text(path: str = DATA_FILE) -> str:
     if not os.path.exists(path):
+        # Only the default dataset gets downloaded. If you passed your own
+        # path and it doesn't exist, that's an error, not a download.
+        if path != DATA_FILE:
+            raise FileNotFoundError(f"no such file: {path}")
         print(f"downloading dataset to {path} ...")
         urllib.request.urlretrieve(DATA_URL, path)
     with open(path, "r", encoding="utf-8") as f:
