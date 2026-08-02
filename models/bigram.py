@@ -27,7 +27,7 @@ class BigramModel(nn.Module):
         loss = None
         if targets is not None:
             B, T, V = logits.shape
-            # cross_entropy is the -log(p) loss from module 282
+            # cross_entropy is the -log(p) loss from the Transformers II module
             loss = F.cross_entropy(logits.view(B * T, V), targets.view(B * T))
         return logits, loss
 
