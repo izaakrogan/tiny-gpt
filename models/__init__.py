@@ -19,8 +19,14 @@ def multihead(**kwargs):
     return MultiHeadModel(**kwargs)
 
 
+def transformer(**kwargs):
+    from .transformer import TinyGPT
+    return TinyGPT(**kwargs)
+
+
 MODELS = {
     "bigram": bigram,
     "head": head,
     "multihead": multihead,
+    "transformer": transformer,
 }
