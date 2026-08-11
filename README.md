@@ -54,7 +54,7 @@ python train.py --model head
 
 Position embeddings are already wired in. Find where they are added and work out why the model needs them.
 
-One bug to expect: if you leave out the mask, the training loss falls further than it should while the generated text stays bad. Every position has seen the answer during training. If your loss looks too good, check the mask first.
+One bug to expect: if you leave out the mask, the training loss collapses to around 0.05 while the generated text comes out as blank lines and nothing else. Every position has seen the answer during training, and at generation time there is no answer to read. If your loss looks too good, check the mask first.
 
 Every run writes `losses_<model>.csv` and generates about 200 characters at the end. `python plot.py` plots every model you've trained so far onto one chart. It needs matplotlib.
 
@@ -84,7 +84,9 @@ python train.py --model transformer
 
 There are only two TODOs and each is one line. Make sure you know which part of each line is the residual before you move on.
 
-It is also worth seeing what happens without the residual connections. Train the full model, then delete the two `x +` from your Block so each half replaces its input instead of adding to it, and train again. The loss drops to about 3.3 in the first 300 iterations and then stops improving for the rest of the run. That is worse than the bigram, even though the model has 50 times as many parameters.
+One experiment here is worth more than the rest, so do not skip it. Train the full model, then delete the two `x +` from your Block so each half replaces its input instead of adding to it, and train again. The loss drops to about 3.3 in the first 300 iterations and then stops improving for the rest of the run. That is worse than the bigram, even though the model has 50 times as many parameters, and the generated text comes out as letter fragments and stray punctuation.
+
+Together with the mask bug from step 2, that gives you two failures worth telling apart. Loss too good and the output blank: check the mask. Loss stuck early and the output in fragments: check the residuals.
 
 Rough val losses with the default settings: bigram 2.7, single head 2.4, multi-head 2.2, transformer 1.8. Also read the four generations side by side. The difference is easier to see in the text than in the numbers.
 
