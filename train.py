@@ -49,12 +49,17 @@ def main():
     p.add_argument("--data", default=None, help="path to any plain-text file (default: tiny shakespeare)")
     p.add_argument("--iters", type=int, default=3000)
     p.add_argument("--block-size", type=int, default=64, help="context length")
+    p.add_argument("--n-embd", type=int, default=64, help="embedding width")
+    p.add_argument("--n-head", type=int, default=4, help="attention heads per block")
+    p.add_argument("--n-layer", type=int, default=4, help="stacked blocks (transformer only)")
     p.add_argument("--batch-size", type=int, default=32)
     p.add_argument("--lr", type=float, default=1e-3)
     p.add_argument("--temperature", type=float, default=1.0)
     p.add_argument("--sample-chars", type=int, default=200)
     p.add_argument("--seed", type=int, default=42, help="change for a different run")
     args = p.parse_args()
+    if args.n_embd % args.n_head:
+        p.error("--n-embd must be divisible by --n-head")
 
     torch.manual_seed(args.seed)
 
@@ -69,7 +74,8 @@ def main():
     print(f"vocab {tok.vocab_size}, train {n:,} chars, val {len(data) - n:,} chars")
 
     model = MODELS[args.model](
-        vocab_size=tok.vocab_size, block_size=args.block_size
+        vocab_size=tok.vocab_size, block_size=args.block_size,
+        n_embd=args.n_embd, n_head=args.n_head, n_layer=args.n_layer,
     ).to(device)
     n_params = sum(p.numel() for p in model.parameters())
     print(f"model: {args.model} ({n_params:,} parameters)")
