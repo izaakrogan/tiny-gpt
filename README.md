@@ -84,7 +84,7 @@ python train.py --model transformer
 
 There are only two TODOs and each is one line. Make sure you know which part of each line is the residual before you move on.
 
-One experiment here is worth more than the rest, so do not skip it. Train the full model, then delete the two `x +` from your Block so each half replaces its input instead of adding to it, and train again. The loss drops to about 3.3 in the first 300 iterations and then stops improving for the rest of the run. That is worse than the bigram, even though the model has 50 times as many parameters, and the generated text comes out as letter fragments and stray punctuation.
+One experiment here is worth more than the rest, so do not skip it. Train the full model, then delete the two `x +` from your Block so each half replaces its input instead of adding to it, and train again. The loss drops to about 3.35 in the first 300 iterations and then stops improving for the rest of the run. That is worse than the bigram, even though the model has 50 times as many parameters, and the generated text comes out as letter fragments and stray punctuation.
 
 Together with the mask bug from step 2, that gives you two failures worth telling apart. Loss too good and the output blank: check the mask. Loss stuck early and the output in fragments: check the residuals.
 
