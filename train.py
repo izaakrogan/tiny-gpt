@@ -3,11 +3,13 @@ runs the training loop, then samples some text from the trained model.
 
     python train.py --model bigram
     python train.py --model head
+    python train.py --model multihead
+    python train.py --model transformer
 
-Every run writes losses.csv and ends by generating text. There is a lot
-going on in this file. You do not need to understand all of it to build
-your model, but if you want to, paste it into your favourite LLM and ask
-it to walk you through the moving parts.
+Every run writes losses_<model>.csv and ends by generating text. There is
+a lot going on in this file. You do not need to understand all of it to
+build your model, but if you want to, paste it into your favourite LLM
+and ask it to walk you through the moving parts.
 """
 
 import argparse
